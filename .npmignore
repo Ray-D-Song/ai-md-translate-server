@@ -1,0 +1,10 @@
+.env
+.github
+prompt.md
+src
+*.tgz
+tsconfig.json
+lib/*.test.js
+docs
+.vscode
+biome.json

@@ -1,0 +1,75 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            platform: linux
+            target: x64
+          - os: ubuntu-latest
+            platform: linux
+            target: arm64
+          - os: macos-latest
+            platform: darwin
+            target: x64
+          - os: macos-latest
+            platform: darwin
+            target: arm64
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Build
+        run: |
+          bun build src/server.ts --compile --outfile translate-server-${{ matrix.platform }}-${{ matrix.target }} --target=bun-${{ matrix.platform }}-${{ matrix.target }}
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: translate-server-${{ matrix.platform }}-${{ matrix.target }}
+          path: translate-server-${{ matrix.platform }}-${{ matrix.target }}
+
+  release:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            artifacts/translate-server-linux-x64/translate-server-linux-x64
+            artifacts/translate-server-linux-arm64/translate-server-linux-arm64
+            artifacts/translate-server-darwin-x64/translate-server-darwin-x64
+            artifacts/translate-server-darwin-arm64/translate-server-darwin-arm64
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

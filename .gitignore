@@ -1,0 +1,10 @@
+node_modules
+lib
+.env
+prompt*.md
+!prompt-example.md
+*.tgz
+
+/notes
+server.log
+server

@@ -1,0 +1,39 @@
+# Copy this to
+# $CWD/.env
+
+# OpenAI's API Key. You will be charged for the usage of this key.
+OPENAI_API_KEY="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+
+# =====================================
+# The remaining variables are optional.
+# =====================================
+
+# Secret key for the server.
+# If not set, the server will not check the request
+# If set, you need to set this in the client request header, like: `Authorization: Bearer xxxxxxxxxxxxxxxxxxxxxxxxxxx`
+# SECRET_KEY="xxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+# HTTPS Proxy (e.g, "https://proxy.example.com:8080")
+# We also read HTTPS_PROXY from regular environment variables.
+# HTTPS_PROXY=""
+
+# Default language model.
+# MODEL_NAME="gpt-3.5-turbo"
+
+# Soft limit of the token size, used to split the file into fragments.
+# FRAGMENT_TOKEN_SIZE=2048
+
+# Sampling temperature, i.e., randomness of the generated text.
+# TEMPERATURE=0.1
+
+# If you hit the API rate limit, you can set this to a positive number.
+# API is not called more frequently than the given interval (in seconds).
+# API_CALL_INTERVAL=0
+
+# The maximum number of lines for code blocks
+# sent to the API as-is for context.
+# CODE_BLOCK_PRESERVATION_LINES=5
+
+# Custom API address, to integrate with a third-party API service provider.
+# API_ENDPOINT="https://api.openai.com/v1/chat/completions"
