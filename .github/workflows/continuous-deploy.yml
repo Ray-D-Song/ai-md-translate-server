@@ -29,4 +29,4 @@ jobs:
           
       - name: Start service
         run: |
-          pm2 start /home/ubuntu/codebase/translate-server/server --name translate-server
+          pm2 start /home/ubuntu/codebase/translate-server/server --cwd /home/ubuntu/codebase/translate-server --name translate-server
