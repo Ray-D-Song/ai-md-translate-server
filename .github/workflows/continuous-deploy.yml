@@ -19,14 +19,15 @@ jobs:
         run: |
           bun build src/server.ts --compile --outfile server
 
-      - name: Copy server to deploy folder
-        run: |
-          cp server /home/ubuntu/codebase/translate-server/server
-
       - name: Stop service
         run: |
           pm2 delete translate-server || true
-          
+
+      - name: Copy server to deploy folder
+        run: |
+          rm /home/ubuntu/codebase/translate-server/server
+          cp server /home/ubuntu/codebase/translate-server/server
+
       - name: Start service
         run: |
           pm2 start /home/ubuntu/codebase/translate-server/server --cwd /home/ubuntu/codebase/translate-server --name translate-server
