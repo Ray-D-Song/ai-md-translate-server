@@ -3,23 +3,13 @@ import path from 'path';
 
 const logger = pino({
   transport: {
-    targets: [
-      {
-        target: 'pino-pretty',
-        options: {
-          destination: path.join(process.cwd(), 'server.log'),
-          mkdir: true,
-          translateTime: 'SYS:standard'
-        }
-      },
-      {
-        target: 'pino-pretty',
-        options: {
-          colorize: true
-        }
-      }
-    ]
-  }
+    target: 'pino/file',
+    options: {
+      destination: path.join(process.cwd(), 'server.log'),
+      mkdir: true
+    }
+  },
+  timestamp: () => `,"time":"${new Date().toISOString()}"`
 });
 
 export default logger;
