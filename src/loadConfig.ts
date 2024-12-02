@@ -51,9 +51,6 @@ const loadConfig = async (): Promise<Config> => {
   const configPath = await findConfigFile();
   if (!configPath) throw new Error('Config file not found.');
   const conf = parse(await readTextFile(configPath));
-  if (!conf.OPENAI_API_KEY) {
-    throw new Error('OPENAI_API_KEY is not set in config file.');
-  }
 
   const toNum = (input: unknown) => {
     if (input === undefined || input === null) return undefined;
