@@ -1,13 +1,12 @@
 # Copy this to
 # $CWD/.env
 
+# =====================================
+#  All variables are optional.
+# =====================================
+
 # OpenAI's API Key. You will be charged for the usage of this key.
 OPENAI_API_KEY="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxx"
-
-
-# =====================================
-# The remaining variables are optional.
-# =====================================
 
 # Secret key for the server.
 # If not set, the server will not check the request

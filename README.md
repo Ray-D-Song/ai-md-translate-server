@@ -14,40 +14,40 @@
 
 中文版注释如下：
 ```bash
-# OpenAI's API Key
-OPENAI_API_KEY="xxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
 # =====================================
-# 以下配置为可选
+# 以下配置都为可选
 # =====================================
+# OpenAI's API Key
+OPENAI_API_KEY="xxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
 # 服务端密钥
 # 如果未设置，则不检查请求头中的密钥
 # 如果设置，则需要在客户端请求头中设置，如：`Authorization: Bearer xxxxxxxxxxxxxxxxxxxxxxxxxxx`
-# SECRET_KEY="xxxxxxxxxxxxxxxxxxxxxxxxxxx"
+SECRET_KEY="xxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
 # HTTPS Proxy (e.g, "https://proxy.example.com:8080")
 # 同时也会读取 HTTPS_PROXY 环境变量
-# HTTPS_PROXY=""
+HTTPS_PROXY=""
 
 # 默认语言模型
-# MODEL_NAME="gpt-3.5-turbo"
+MODEL_NAME="gpt-3.5-turbo"
 
 # 软令牌限制，用于将文件拆分为片段
-# FRAGMENT_TOKEN_SIZE=2048
+FRAGMENT_TOKEN_SIZE=2048
 
 # 采样温度，即生成文本的随机性
-# TEMPERATURE=0.1
+TEMPERATURE=0.1
 
 # 如果命中 API 速率限制，可以设置此值为正数
 # API 不会比给定的时间间隔更频繁地调用
-# API_CALL_INTERVAL=0
+API_CALL_INTERVAL=0
 
 # 代码块的最大行数，用于将代码块直接发送到 API 作为上下文
-# CODE_BLOCK_PRESERVATION_LINES=5
+CODE_BLOCK_PRESERVATION_LINES=5
 
 # 自定义 API 地址，用于集成第三方 API 服务提供商
-# API_ENDPOINT="https://xxx.com/v1/chat/completions"
+API_ENDPOINT="https://xxx.com/v1/chat/completions"
 ```
 
 ## 客户端请求
