@@ -1,5 +1,5 @@
 export async function findAvailablePort(startPort: number): Promise<number> {
-  for (let port = startPort; port < startPort + 1000; port += 1000) {
+  for (let port = startPort; port < startPort + 10000; port += 1000) {
     try {
       const server = Bun.serve({
         port,
