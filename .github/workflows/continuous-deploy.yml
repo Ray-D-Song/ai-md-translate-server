@@ -1,0 +1,32 @@
+name: Continuous Deploy
+
+on:
+  push:
+    branches: [ main ]
+    
+jobs:
+  build-and-deploy:
+    runs-on: self-hosted
+    
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          bun install
+
+      - name: Build
+        run: |
+          bun build src/server.ts --compile --outfile server
+
+      - name: Copy server to deploy folder
+        run: |
+          cp server /home/ubuntu/codebase/translate-server/server
+
+      - name: Stop service
+        run: |
+          pm2 delete translate-server || true
+          
+      - name: Start service
+        run: |
+          pm2 start /home/ubuntu/codebase/translate-server/server --name translate-server

@@ -39,9 +39,7 @@
     "@biomejs/biome": "1.6.4",
     "@types/bun": "^1.1.14",
     "@types/dashdash": "^1.14.1",
-    "@types/node": "^20.5.7",
-    "tsx": "^4.7.1",
-    "typescript": "^5.2.2"
+    "@types/node": "^20.5.7"
   },
   "prettier": {
     "singleQuote": true,
