@@ -2,13 +2,17 @@ import loadConfig from './loadConfig';
 import translate from './index';
 import { mergeConfig } from './utils/merge-config';
 import logger from './utils/logger';
+import { findAvailablePort } from './utils/check-ports';
 
-loadConfig().then(config => {
+loadConfig().then(async config => {
   logger.info('Server starting with config:', config);
   const needAuth =
     config.secretKey &&
     typeof config.secretKey === 'string' &&
     config.secretKey.length > 0;
+
+  const port = await findAvailablePort(3000);
+  
   Bun.serve({
     async fetch(req) {
       if (req.method !== 'POST') {
@@ -55,8 +59,8 @@ loadConfig().then(config => {
         return new Response('Translation failed', { status: 500 });
       }
     },
-    port: 3000
+    port
   });
 
-  logger.info('Server started on port 3000');
+  logger.info(`Server started on port ${port}`);
 });
