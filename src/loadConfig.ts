@@ -60,17 +60,19 @@ const loadConfig = async (): Promise<Config> => {
 
   const config = {
     apiEndpoint:
-      conf.API_ENDPOINT ?? 'https://api.openai.com/v1/chat/completions',
-    secretKey: conf.SECRET_KEY,
-    apiKey: conf.OPENAI_API_KEY,
+      process.env.API_ENDPOINT ??
+      conf.API_ENDPOINT ??
+      'https://api.openai.com/v1/chat/completions',
+    secretKey: process.env.SECRET_KEY ?? conf.SECRET_KEY,
+    apiKey: process.env.OPENAI_API_KEY ?? conf.OPENAI_API_KEY,
     prompt: '',
-    model: resolveModelShorthand(conf.MODEL_NAME ?? '3'),
-    apiCallInterval: toNum(conf.API_CALL_INTERVAL) ?? 0,
+    model: resolveModelShorthand(process.env.MODEL_NAME ?? conf.MODEL_NAME ?? '3'),
+    apiCallInterval: toNum(process.env.API_CALL_INTERVAL ?? conf.API_CALL_INTERVAL) ?? 0,
     quiet: process.stdout.isTTY === false,
-    fragmentSize: toNum(conf.FRAGMENT_TOKEN_SIZE) ?? 2048,
-    temperature: toNum(conf.TEMPERATURE) ?? 0.1,
-    codeBlockPreservationLines: toNum(conf.CODE_BLOCK_PRESERVATION_LINES) ?? 5,
-    httpsProxy: conf.HTTPS_PROXY ?? process.env.HTTPS_PROXY
+    fragmentSize: toNum(process.env.FRAGMENT_TOKEN_SIZE ?? conf.FRAGMENT_TOKEN_SIZE) ?? 2048,
+    temperature: toNum(process.env.TEMPERATURE ?? conf.TEMPERATURE) ?? 0.1,
+    codeBlockPreservationLines: toNum(process.env.CODE_BLOCK_PRESERVATION_LINES ?? conf.CODE_BLOCK_PRESERVATION_LINES) ?? 5,
+    httpsProxy: process.env.HTTPS_PROXY ?? conf.HTTPS_PROXY
   };
 
   return config;

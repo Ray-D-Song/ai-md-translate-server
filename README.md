@@ -9,7 +9,8 @@
 在 [release](https://github.com/ray-d-song/ai-md-translate-server/releases) 页面下载对应平台的可执行文件，并运行。
 
 ## 配置
-程序会读取同目录下的 `.env` 文件，并读取其中的配置。  
+配置可以来源于三处：环境变量、同一目录下的 `.env` 文件、客户端请求。  
+优先级：客户端请求 > 环境变量 > `.env` 文件。  
 完整配置可以参考 [env-example](.env.example) 文件。  
 
 中文版注释如下：

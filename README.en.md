@@ -5,7 +5,8 @@ This is the server side of the [chatgpt-md-translator](https://github.com/smikit
 Download the executable file for the corresponding platform from the [release](https://github.com/ray-d-song/ai-md-translate-server/releases) page and run it.
 
 ## Configuration
-The program will read the configuration from the `.env` file in the same directory.  
+The configuration can be sourced from three places: environment variables, the `.env` file in the same directory, and client requests.  
+The priority is: client request > environment variables > `.env` file.  
 The complete configuration can be referred to the [env-example](.env.example) file.  
 
 ## Client Request

@@ -11,7 +11,7 @@ loadConfig().then(async config => {
     typeof config.secretKey === 'string' &&
     config.secretKey.length > 0;
 
-  const port = await findAvailablePort(3000);
+  const port = await findAvailablePort(11399);
   
   Bun.serve({
     async fetch(req) {
